@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>AcousticConstructor</Name>
+		<Assembly>"C:\ProgramData\Autodesk\Revit\Addins\2022\AcousticConstructor\AcousticConstructor.dll"</Assembly>
+		<AddInId>F8CED890-49FF-48D0-B4CB-013493A352D6</AddInId>
+		<FullClassName>AcoustiCTab.Tab</FullClassName>
+		<VendorId>KRKS</VendorId>
+	</AddIn>
+</RevitAddIns>

@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcoustiCTab", "AcousticConstructor\AcoustiCTab.csproj", "{1FF8B4B0-392A-481F-A87B-379CA3AEF118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcoustiCUtils", "AcoustiCUtils\AcoustiCUtils.csproj", "{62BD25E3-932C-440C-85D7-0DB402432B5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{9081DADF-D525-4C18-99AC-92C385F704BA}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FF8B4B0-392A-481F-A87B-379CA3AEF118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF8B4B0-392A-481F-A87B-379CA3AEF118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF8B4B0-392A-481F-A87B-379CA3AEF118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF8B4B0-392A-481F-A87B-379CA3AEF118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62BD25E3-932C-440C-85D7-0DB402432B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62BD25E3-932C-440C-85D7-0DB402432B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62BD25E3-932C-440C-85D7-0DB402432B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62BD25E3-932C-440C-85D7-0DB402432B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9081DADF-D525-4C18-99AC-92C385F704BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9081DADF-D525-4C18-99AC-92C385F704BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9081DADF-D525-4C18-99AC-92C385F704BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9081DADF-D525-4C18-99AC-92C385F704BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
