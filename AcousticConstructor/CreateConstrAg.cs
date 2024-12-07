@@ -31,13 +31,13 @@ namespace AcoustiCTab
  
             utilsFolderPath = $@"C:\ProgramData\Autodesk\Revit\Addins\{Version}\AcousticConstructor";
 
-            var ButtonName = Tab._executedItemName;
+            var ButtonName = Tab.ExecutedItemName;
 
-            Code = Tab._executedItemCode;
+            Code = Tab.ExecutedItemCode;
 
-            Thicness = Tab._executedItemThicness;
+            Thicness = Tab.ExecutedItemThicness;
 
-            TypeAgConstr = Tab._executedItemType;
+            TypeAgConstr = Tab.ExecutedItemType;
 
             string NameConstr = "AG_" + $"{ButtonName}" + "_" + $"{Thicness}"; // Записываем имя конструкции
 

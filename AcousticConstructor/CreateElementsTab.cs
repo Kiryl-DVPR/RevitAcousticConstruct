@@ -16,13 +16,13 @@ namespace AcousticConstructor
         {
             var dataPulldownButton = new PulldownButtonData(name, nameButton);
 
-            var pulldownButtonFloor = ribbonPanel.AddItem(dataPulldownButton) as PulldownButton;
+            var pulldownButton = ribbonPanel.AddItem(dataPulldownButton) as PulldownButton;
 
             BitmapImage Image = new BitmapImage(uriImagepulldownButton);
 
-            pulldownButtonFloor.LargeImage = Image;
+            pulldownButton.LargeImage = Image;
 
-            return pulldownButtonFloor;
+            return pulldownButton;
         }
 
     }
