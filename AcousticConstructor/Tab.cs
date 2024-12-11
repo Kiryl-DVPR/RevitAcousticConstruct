@@ -39,13 +39,19 @@ namespace AcoustiCTab
         public Result OnStartup(UIControlledApplication application)
         {
  
-            ComponentManager.PreviewExecute += ComponentManager_PreviewExecute;////
+            ComponentManager.PreviewExecute += ComponentManager_PreviewExecute;
 
-            var taskGetListAg = new Task<List<ListAG>>(() => REST.Requests.GetInfoConstr().Result);
-            var taskGetVersion = new Task<string>(() => REST.Requests.GetVersion().Result.data.Version);
-            
-            taskGetListAg.Start();
-            taskGetVersion.Start();
+            //var taskGetListAg = new Task<List<ListAG>>(async () =>
+            //{
+            //    var response = await REST.Requests.GetInfoConstr();
+            //    return response;
+            //});
+
+            var taskGetListAg = Task.Run(async () => await REST.Requests.GetInfoConstr());
+            var taskGetVersion = Task.Run(async () => await REST.Requests.GetVersion());
+
+            Task.WaitAll(taskGetListAg, taskGetVersion);
+            //var taskGetVersion = new Task<string>(() => REST.Requests.GetVersion().Result.data.Version);
 
             //CREATE TAB ACOUSTIC®
 
@@ -79,10 +85,8 @@ namespace AcoustiCTab
             panel.AddItem(buttonCalcSelect);
 
             //CREATE PANEL FOR ADD PRODUCT AG  
-            taskGetVersion.Wait();
-            taskGetListAg.Wait();
 
-            ClassLibrary.globalData.VersionService = taskGetVersion.Result;
+            ClassLibrary.globalData.VersionService = taskGetVersion.Result.data.Version;
             ListConstrAg = taskGetListAg.Result;
 
             var panelConstraction =
@@ -107,9 +111,10 @@ namespace AcoustiCTab
 
             PushButtonData buttonPull = null;
 
+            string[] type = { "partition", "cladding", "floor", "ceiling", "zips" };
+
             foreach (var item in ListConstrAg)
             {
-                string[] type = { "partition", "cladding", "floor", "ceiling", "zips" };
 
                 if (type.Any(s => s.Contains(item.Type)))
                 {
@@ -150,6 +155,7 @@ namespace AcoustiCTab
                     case "floor":
                         pulldownButtonFloor.AddPushButton(buttonPull);
                         break;
+
                 }
             }
 
