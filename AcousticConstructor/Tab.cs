@@ -39,14 +39,17 @@ namespace AcoustiCTab
         public Result OnStartup(UIControlledApplication application)
         {
  
-            ComponentManager.PreviewExecute += ComponentManager_PreviewExecute; 
+            ComponentManager.PreviewExecute += ComponentManager_PreviewExecute;////
 
-    //CREATE TAB ACOUSTIC®
+            var taskGetListAg = new Task<List<ListAG>>(() => REST.Requests.GetInfoConstr().Result);
+            var taskGetVersion = new Task<string>(() => REST.Requests.GetVersion().Result.data.Version);
+            
+            taskGetListAg.Start();
+            taskGetVersion.Start();
+
+            //CREATE TAB ACOUSTIC®
 
             const string tabName = "ACOUSTIC®";
-
-            var taskGetVersion = new Task<string>(() => REST.Requests.GetVersion().Result.data.Version);
-            ClassLibrary.globalData.VersionService = taskGetVersion.Result;
 
             application.CreateRibbonTab(tabName); //Создание вкладки в Revit
             
@@ -75,13 +78,16 @@ namespace AcoustiCTab
             panel.AddItem(buttonCalcAll);
             panel.AddItem(buttonCalcSelect);
 
-    //CREATE PANEL FOR ADD PRODUCT AG  
+            //CREATE PANEL FOR ADD PRODUCT AG  
+            taskGetVersion.Wait();
+            taskGetListAg.Wait();
+
+            ClassLibrary.globalData.VersionService = taskGetVersion.Result;
+            ListConstrAg = taskGetListAg.Result;
 
             var panelConstraction =
                 application.CreateRibbonPanel(tabName,
                     "Звукоизоляционные конструкции");
-
-            ListConstrAg = REST.Requests.GetInfoConstr().Result; // Get List Constructions AG 
 
             var pulldownButtonFloor = new CreateElementsTab().CreatePulldownButton("Полы Acoustic Group", "Полы",
                 panelConstraction, 
