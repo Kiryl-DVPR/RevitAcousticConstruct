@@ -10,7 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Extensions.Logging;
 using Path = System.IO.Path;
+using Serilog;
 
 namespace AcoustiCTab
 {
@@ -41,6 +43,11 @@ namespace AcoustiCTab
  
             ComponentManager.PreviewExecute += ComponentManager_PreviewExecute;
 
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("C:/Users/katan/Desktop/RevitApp/AcousticConstruct/logs/log.txt").MinimumLevel.Debug()
+                .CreateLogger();
+
+            Log.Information("Start");
             //var taskGetListAg = new Task<List<ListAG>>(async () =>
             //{
             //    var response = await REST.Requests.GetInfoConstr();

@@ -4,13 +4,19 @@ using Autodesk.Revit.UI;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows.Input;
 using Color = Autodesk.Revit.DB.Color;
 using Document = Autodesk.Revit.DB.Document;
+using ClassLibrary;
+using Serilog;
+using Serilog.Core;
+using System;
 
 
 namespace AcoustiCTab
 {
     [Transaction(TransactionMode.Manual)]
+
     public class CreateConstrAg : IExternalCommand
     {
         public static string Code; 
@@ -28,7 +34,11 @@ namespace AcoustiCTab
             UIApplication uiapp = commandData.Application;//Обращаемся к приложению Revit
             UIDocument uidoc = uiapp.ActiveUIDocument; //Оращаемся к интерфейсу Revit
             Document doc = uidoc.Document;//Обращаемся к проекту Revit
- 
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("C:/Users/katan/Desktop/RevitApp/AcousticConstruct/logs/log.txt").MinimumLevel.Debug()
+                .CreateLogger();
+            
             utilsFolderPath = $@"C:\ProgramData\Autodesk\Revit\Addins\{Version}\AcousticConstructor";
 
             var ButtonName = Tab.ExecutedItemName;
@@ -84,6 +94,9 @@ namespace AcoustiCTab
                     }
                     catch
                     {
+                        Log.Information("Семейство уже создано");
+                        Log.Debug("Семейство уже создано");
+
                         TaskDialog.Show("Загрузка семейства", "Семейство уже создано");
 
                         return Result.Failed;
