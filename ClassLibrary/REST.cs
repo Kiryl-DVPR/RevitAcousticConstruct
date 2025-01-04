@@ -34,10 +34,14 @@ namespace REST
 
                 var response = await client.PostAsync(host, data);
 
+                ClassLibrary.Logger.Logger_.Information($"Статус код:{response.StatusCode} \n " +
+                                                        $"{response.RequestMessage.RequestUri}");
+
                 return response;
             }
             catch (Exception x)
             {
+                ClassLibrary.Logger.Logger_.Error($"{x.Message}");
                 Console.WriteLine("Ошибка" + x.ToString());
             }
             finally
@@ -55,6 +59,7 @@ namespace REST
 
             try
             {
+
                 return await client.GetAsync(host);
             }
             catch (Exception x)
