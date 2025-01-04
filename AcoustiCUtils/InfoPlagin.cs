@@ -20,7 +20,7 @@ namespace AcoustiCUtils
             UIDocument uidoc = uiapp.ActiveUIDocument; //Оращаемся к интерфейсу Revit
             Document doc = uidoc.Document;//Обращаемся к проекту Revit
 
-            string pathVercsion = $@"C:\ProgramData\Autodesk\Revit\Addins\{ClassLibrary.globalData.VersionRevit}\AcousticConstructor\update\version.txt";
+            string pathVercsion = $@"C:\ProgramData\Autodesk\Revit\Addins\{ClassLibrary.GlobalData.VersionRevit}\AcousticConstructor\update\version.txt";
             string textVersion = null;
 
             var task = Task.Run(async () =>

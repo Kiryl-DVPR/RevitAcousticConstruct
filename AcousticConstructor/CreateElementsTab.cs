@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
-namespace AcousticConstructor
+namespace AcoustiCTab
 {
     public class CreateElementsTab
     {

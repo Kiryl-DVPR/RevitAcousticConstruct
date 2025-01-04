@@ -1,4 +1,4 @@
-﻿namespace AcoustiCUtils
+﻿namespace ClassLibrary
 {
     public class Construction
     {

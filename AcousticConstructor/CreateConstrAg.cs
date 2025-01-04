@@ -11,6 +11,7 @@ using ClassLibrary;
 using Serilog;
 using Serilog.Core;
 using System;
+using Tab = AcoustiCTab.Tab;
 
 
 namespace AcoustiCTab

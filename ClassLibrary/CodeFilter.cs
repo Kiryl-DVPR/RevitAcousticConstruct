@@ -1,8 +1,7 @@
-﻿using Autodesk.Revit;
+﻿using System.Collections.Generic;
 using Autodesk.Revit.DB;
-using System.Collections.Generic;
 
-namespace AcoustiCUtils
+namespace ClassLibrary
 {
     public static class CodeFilter
     {

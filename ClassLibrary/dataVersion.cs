@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public class dataVersion
+    public class DataVersion
     {
         public string Version { get; set; }
         public string BuildData { get; set; }

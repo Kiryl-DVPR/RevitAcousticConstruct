@@ -1,9 +1,9 @@
-﻿using AcoustiCUtils.Library;
-using Autodesk.Revit.DB;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Autodesk.Revit.DB;
+using Construction = ClassLibrary.Construction;
 
-namespace AcoustiCUtils
+namespace ClassLibrary
 {
     public static class ConstrInfoPerType
     {

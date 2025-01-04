@@ -1,18 +1,15 @@
-﻿using AcousticConstructor;
-using AcoustiCUtils.Library;
-using Autodesk.Revit.Attributes;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using Autodesk.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Microsoft.Extensions.Logging;
-using Path = System.IO.Path;
+using Autodesk.Revit.Attributes;
+using Autodesk.Revit.UI;
+using Autodesk.Windows;
+using ClassLibrary;
 using Serilog;
+using Path = System.IO.Path;
 
 namespace AcoustiCTab
 {
@@ -20,7 +17,6 @@ namespace AcoustiCTab
  
     public class Tab : IExternalApplication
     {
-
         public static string ExecutedItemName;
 
         public static string ExecutedItemCode;
@@ -29,9 +25,11 @@ namespace AcoustiCTab
 
         public static int ExecutedItemThicness;
 
-        public static List<ListAG> ListConstrAg;
+        public static List<ListAg> ListConstrAg;
 
-        public static string Version = ClassLibrary.globalData.VersionRevit;
+        public static string Version = ClassLibrary.GlobalData.VersionRevit;
+
+        public static ILogger Logger;
 
         public Result OnShutdown(UIControlledApplication application)
         {   
@@ -43,23 +41,15 @@ namespace AcoustiCTab
  
             ComponentManager.PreviewExecute += ComponentManager_PreviewExecute;
 
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File("C:/Users/katan/Desktop/RevitApp/AcousticConstruct/logs/log.txt").MinimumLevel.Debug()
-                .CreateLogger();
+            Logger = ClassLibrary.Logger.CreateLogger();
 
-            Log.Information("Start");
-            //var taskGetListAg = new Task<List<ListAG>>(async () =>
-            //{
-            //    var response = await REST.Requests.GetInfoConstr();
-            //    return response;
-            //});
+            Logger.Information("Start");
 
-            var taskGetListAg = Task.Run(async () => await REST.Requests.GetInfoConstr());
-            var taskGetVersion = Task.Run(async () => await REST.Requests.GetVersion());
+            var taskGetListAg = Task.Run(async () => await Requests.GetInfoConstr());
+            var taskGetVersion = Task.Run(async () => await Requests.GetVersion());
 
             Task.WaitAll(taskGetListAg, taskGetVersion);
-            //var taskGetVersion = new Task<string>(() => REST.Requests.GetVersion().Result.data.Version);
-
+            
             //CREATE TAB ACOUSTIC®
 
             const string tabName = "ACOUSTIC®";
@@ -93,7 +83,7 @@ namespace AcoustiCTab
 
             //CREATE PANEL FOR ADD PRODUCT AG  
 
-            ClassLibrary.globalData.VersionService = taskGetVersion.Result.data.Version;
+            ClassLibrary.GlobalData.VersionService = taskGetVersion.Result.data.Version;
             ListConstrAg = taskGetListAg.Result;
 
             var panelConstraction =
@@ -185,6 +175,8 @@ namespace AcoustiCTab
 
             projectButtons.AddRange(panelWeb.AddStackedItems(buttonWeb, buttonInfoPlag));
 
+            Log.Information("Finish Panel");
+
             return Result.Succeeded;
         }
 
@@ -224,5 +216,7 @@ namespace AcoustiCTab
                 ExecutedItemThicness = item.Thickness;
             }
         }
+
+
     }
 }

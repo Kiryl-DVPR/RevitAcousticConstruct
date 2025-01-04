@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
-
-namespace AcoustiCUtils
+namespace ClassLibrary
 {
     public class Constr
     {
@@ -9,7 +8,7 @@ namespace AcoustiCUtils
         public int LenX { get; set; }
         public int LenY { get; set; }
         public int LenZ { get; set; }
-        public bool dframe { get; set; }
+        public bool Dframe { get; set; }
         public int Area { get; set; }
         public int Perimeter { get; set; }
         public int Step { get; set; } = 600;

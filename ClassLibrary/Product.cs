@@ -1,5 +1,5 @@
 ﻿
-namespace AcoustiCUtils
+namespace ClassLibrary
 {
     public class Product
     {

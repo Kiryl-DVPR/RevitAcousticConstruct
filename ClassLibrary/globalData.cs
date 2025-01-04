@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public static class globalData
+    public static class GlobalData
     {
         public static string VersionRevit = "2022";
         public static string VersionService = null;

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AcoustiCUtils.Library
+﻿namespace ClassLibrary
 {
-    public class ListAG
+    public class ListAg
     {
         public int Id {  get; set; }
         public string Code {  get; set; }

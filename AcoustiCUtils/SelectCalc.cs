@@ -6,6 +6,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI.Selection;
 using System.Linq;
+using ClassLibrary;
 
 namespace AcoustiCUtils
 {
@@ -48,7 +49,7 @@ namespace AcoustiCUtils
                     var task = Task.Run(async () =>
                     {
 
-                        var productList = await REST.Requests.GetCalcProduct(ConstrInfoPerType.elementInfo);
+                        var productList = await Requests.GetCalcProduct(ConstrInfoPerType.elementInfo);
 
                         var productId = 1;
 

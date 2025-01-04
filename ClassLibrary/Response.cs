@@ -1,11 +1,6 @@
-﻿using ClassLibrary;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace AcoustiCUtils.Library
+namespace ClassLibrary
 {
     public class Response<T>
     {
@@ -18,7 +13,7 @@ namespace AcoustiCUtils.Library
     {
         public int code = 0;
         //public string error = null;
-        public dataVersion data = null;
+        public DataVersion data = null;
 
     }
 

@@ -1,17 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
-using System;
-using AcoustiCUtils;
-using AcoustiCUtils.Library;
-using Newtonsoft.Json;
 using System.Text;
-using System.IO;
-using ClassLibrary;
-using Autodesk.Revit.DB;
-using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
-namespace REST
+namespace ClassLibrary
 {
     public static class Requests
     {
@@ -82,11 +76,11 @@ namespace REST
             return response.data;
         }
 
-        public static async Task<List<ListAG>> GetInfoConstr()
+        public static async Task<List<ListAg>> GetInfoConstr()
         {
             var postresponse = await Requests.GetRequest($"{MainHost}/api/v1/AllIsolationConstr");
             var jsonStringProduct = await postresponse.Content.ReadAsStringAsync();
-            var response = JsonConvert.DeserializeObject<Response<ListAG>>(jsonStringProduct);
+            var response = JsonConvert.DeserializeObject<Response<ListAg>>(jsonStringProduct);
             return response?.data;
         }
 
