@@ -55,6 +55,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Revit.Async, Version=2.1.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\Revit.Async.2.1.1\lib\net45\Revit.Async.dll</HintPath>
+    </Reference>
     <Reference Include="RevitAddInUtility, Version=22.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\AcousticConstructor\packages\Revit_API_x64.2022.0.0\lib\NET480\RevitAddInUtility.dll</HintPath>
     </Reference>

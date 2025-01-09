@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ClassLibrary
 {
-    public static class Requests
+    public static class Rest
     {
         private const string TestHost = "http://51.250.123.41:3005";
         private const string MainHost = "https://db.acoustic.ru:3005";
@@ -67,7 +67,7 @@ namespace ClassLibrary
         public static async Task<List<Product>> GetCalcProduct(List<Constr> constr)
         {
 
-            var postresponse = await Requests.PostRequest($"{MainHost}/api/v1/calcIsolation/byProduct", constr);
+            var postresponse = await Rest.PostRequest($"{MainHost}/api/v1/calcIsolation/byProduct", constr);
 
             var jsonStringProduct = await postresponse.Content.ReadAsStringAsync(); // записываем содержимое файла в строковую переменную
 
@@ -78,7 +78,7 @@ namespace ClassLibrary
 
         public static async Task<List<ListAg>> GetInfoConstr()
         {
-            var postresponse = await Requests.GetRequest($"{MainHost}/api/v1/AllIsolationConstr");
+            var postresponse = await Rest.GetRequest($"{MainHost}/api/v1/AllIsolationConstr");
             var jsonStringProduct = await postresponse.Content.ReadAsStringAsync();
             var response = JsonConvert.DeserializeObject<Response<ListAg>>(jsonStringProduct);
             return response?.data;
@@ -86,7 +86,7 @@ namespace ClassLibrary
 
         public static async Task<ResponseVersion> GetVersion()
         {
-            HttpResponseMessage postresponse = await Requests.GetRequest($"{TestHost}/version");
+            HttpResponseMessage postresponse = await Rest.GetRequest($"{TestHost}/version");
             string jsonStringProduct = await postresponse.Content.ReadAsStringAsync();
             var response = JsonConvert.DeserializeObject<ResponseVersion>(jsonStringProduct);
             return response;

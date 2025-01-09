@@ -49,7 +49,7 @@ namespace AcoustiCUtils
                     var task = Task.Run(async () =>
                     {
 
-                        var productList = await Requests.GetCalcProduct(ConstrInfoPerType.elementInfo);
+                        var productList = await Rest.GetCalcProduct(ConstrInfoPerType.elementInfo);
 
                         var productId = 1;
 

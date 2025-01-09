@@ -9,13 +9,15 @@ namespace ClassLibrary
 {
     public static class Logger
     {
-        public static ILogger CreateLogger()
+        public static ILogger Logger1 { get; private set; }
+
+        public static void CreateLogger()
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File($@"C:\ProgramData\Autodesk\Revit\Addins\{ClassLibrary.GlobalData.VersionRevit}\AcousticConstructor/logs/log.txt").MinimumLevel.Debug()
                 .CreateLogger();
 
-            return Log.Logger;
+            Logger1 = Log.Logger;
 
         }
     }
